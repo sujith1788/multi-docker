@@ -1,0 +1,30 @@
+sudo: required
+services:
+  - docker
+  
+before_install:
+
+  - docker build -t kumar/react-test -f ./client/Dockerfile.dev
+
+script:
+  - docker run -e CI=true USERNAME/react-test npm test -- --coverage
+  
+  
+after_success:
+  - docker build -t kumar/multi-client ./client
+  - docker build -t kumar/multi-nginx ./nginx
+  - docker build -t kumar/multi-server ./server
+  - docker build -t kumar/multi-worker ./worker
+
+#logging into docker cli from travis to dockerhub , we add the s and pwd in travis
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  
+#password copy chesi | tarvata daniki isthundi. idantah endukante travis adagaledu docker di username and pwd so maname istunnam.
+
+#take images and push to dockerhub
+
+  - docker push kumar/multi-client
+  - docker push kumar/multi-nginx
+  - docker push kumar/multi-server
+  - docker push kumar/multi-worker
+  
