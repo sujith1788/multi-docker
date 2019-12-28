@@ -4,7 +4,7 @@ services:
   
 before_install:
 
-  - docker build -t testimage -f ./client/Dockerfile.dev
+  - docker build -t testimage -f ./client/Dockerfile.dev ./client
 
 script:
   - docker run -e CI=true testimage npm test -- --coverage
