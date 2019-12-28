@@ -4,7 +4,7 @@ services:
   
 before_install:
 
-  - docker build -t kumar/react-test -f ./client/Dockerfile.dev
+  - docker build -t testimage -f ./client/Dockerfile.dev
 
 script:
   - docker run -e CI=true USERNAME/react-test npm test -- --coverage
