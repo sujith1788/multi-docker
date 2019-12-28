@@ -19,10 +19,10 @@ after_success:
 #logging into docker cli from travis to dockerhub , we add the s and pwd in travis
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   
-  - docker push sujith1788/multi-client
-  - docker push sujith1788/multi-nginx
-  - docker push sujith1788/multi-server
-  - docker push sujith1788/multi-worker
+  - docker push kumar/multi-client
+  - docker push kumar/multi-nginx
+  - docker push kumar/multi-server
+  - docker push kumar/multi-worker
 #password copy chesi | tarvata daniki isthundi. idantah endukante travis adagaledu docker di username and pwd so maname istunnam.
 
 #take images and push to dockerhub
